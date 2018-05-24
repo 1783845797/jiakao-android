@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hqh.android.dao.CodeMapper">
+  <resultMap id="BaseResultMap" type="com.hqh.android.entity.Code">
+    <id column="XTLB" jdbcType="CHAR" property="xtlb" />
+    <id column="DMLB" jdbcType="VARCHAR" property="dmlb" />
+    <id column="DMZ" jdbcType="VARCHAR" property="dmz" />
+    <result column="DMSX" jdbcType="CHAR" property="dmsx" />
+    <result column="SXH" jdbcType="DECIMAL" property="sxh" />
+    <result column="YWDX" jdbcType="VARCHAR" property="ywdx" />
+    <result column="ZT" jdbcType="CHAR" property="zt" />
+    <result column="CSBJ" jdbcType="CHAR" property="csbj" />
+    <result column="GXSJ" jdbcType="TIMESTAMP" property="gxsj" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.hqh.android.entity.CodeWithBLOBs">
+    <result column="DMSM1" jdbcType="LONGVARCHAR" property="dmsm1" />
+    <result column="DMSM2" jdbcType="LONGVARCHAR" property="dmsm2" />
+    <result column="DMSM3" jdbcType="LONGVARCHAR" property="dmsm3" />
+    <result column="DMSM4" jdbcType="LONGVARCHAR" property="dmsm4" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    XTLB, DMLB, DMZ, DMSX, SXH, YWDX, ZT, CSBJ, GXSJ
+  </sql>
+  <sql id="Blob_Column_List">
+    DMSM1, DMSM2, DMSM3, DMSM4
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.hqh.android.entity.CodeExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from code
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.hqh.android.entity.CodeExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from code
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="com.hqh.android.entity.CodeKey" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from code
+    where XTLB = #{xtlb,jdbcType=CHAR}
+    and DMLB = #{dmlb,jdbcType=VARCHAR}
+    and DMZ = #{dmz,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.hqh.android.entity.CodeKey">
+    delete from code
+    where XTLB = #{xtlb,jdbcType=CHAR}
+    and DMLB = #{dmlb,jdbcType=VARCHAR}
+    and DMZ = #{dmz,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hqh.android.entity.CodeExample">
+    delete from code
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hqh.android.entity.CodeWithBLOBs">
+    insert into code (XTLB, DMLB, DMZ,
+    DMSX, SXH, YWDX, ZT,
+    CSBJ, GXSJ, DMSM1,
+    DMSM2, DMSM3, DMSM4
+    )
+    values (#{xtlb,jdbcType=CHAR}, #{dmlb,jdbcType=VARCHAR}, #{dmz,jdbcType=VARCHAR},
+    #{dmsx,jdbcType=CHAR}, #{sxh,jdbcType=DECIMAL}, #{ywdx,jdbcType=VARCHAR}, #{zt,jdbcType=CHAR},
+    #{csbj,jdbcType=CHAR}, #{gxsj,jdbcType=TIMESTAMP}, #{dmsm1,jdbcType=LONGVARCHAR},
+    #{dmsm2,jdbcType=LONGVARCHAR}, #{dmsm3,jdbcType=LONGVARCHAR}, #{dmsm4,jdbcType=LONGVARCHAR}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hqh.android.entity.CodeWithBLOBs">
+    insert into code
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="xtlb != null">
+        XTLB,
+      </if>
+      <if test="dmlb != null">
+        DMLB,
+      </if>
+      <if test="dmz != null">
+        DMZ,
+      </if>
+      <if test="dmsx != null">
+        DMSX,
+      </if>
+      <if test="sxh != null">
+        SXH,
+      </if>
+      <if test="ywdx != null">
+        YWDX,
+      </if>
+      <if test="zt != null">
+        ZT,
+      </if>
+      <if test="csbj != null">
+        CSBJ,
+      </if>
+      <if test="gxsj != null">
+        GXSJ,
+      </if>
+      <if test="dmsm1 != null">
+        DMSM1,
+      </if>
+      <if test="dmsm2 != null">
+        DMSM2,
+      </if>
+      <if test="dmsm3 != null">
+        DMSM3,
+      </if>
+      <if test="dmsm4 != null">
+        DMSM4,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="xtlb != null">
+        #{xtlb,jdbcType=CHAR},
+      </if>
+      <if test="dmlb != null">
+        #{dmlb,jdbcType=VARCHAR},
+      </if>
+      <if test="dmz != null">
+        #{dmz,jdbcType=VARCHAR},
+      </if>
+      <if test="dmsx != null">
+        #{dmsx,jdbcType=CHAR},
+      </if>
+      <if test="sxh != null">
+        #{sxh,jdbcType=DECIMAL},
+      </if>
+      <if test="ywdx != null">
+        #{ywdx,jdbcType=VARCHAR},
+      </if>
+      <if test="zt != null">
+        #{zt,jdbcType=CHAR},
+      </if>
+      <if test="csbj != null">
+        #{csbj,jdbcType=CHAR},
+      </if>
+      <if test="gxsj != null">
+        #{gxsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dmsm1 != null">
+        #{dmsm1,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="dmsm2 != null">
+        #{dmsm2,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="dmsm3 != null">
+        #{dmsm3,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="dmsm4 != null">
+        #{dmsm4,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hqh.android.entity.CodeExample" resultType="java.lang.Long">
+    select count(*) from code
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update code
+    <set>
+      <if test="record.xtlb != null">
+        XTLB = #{record.xtlb,jdbcType=CHAR},
+      </if>
+      <if test="record.dmlb != null">
+        DMLB = #{record.dmlb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dmz != null">
+        DMZ = #{record.dmz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dmsx != null">
+        DMSX = #{record.dmsx,jdbcType=CHAR},
+      </if>
+      <if test="record.sxh != null">
+        SXH = #{record.sxh,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ywdx != null">
+        YWDX = #{record.ywdx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zt != null">
+        ZT = #{record.zt,jdbcType=CHAR},
+      </if>
+      <if test="record.csbj != null">
+        CSBJ = #{record.csbj,jdbcType=CHAR},
+      </if>
+      <if test="record.gxsj != null">
+        GXSJ = #{record.gxsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.dmsm1 != null">
+        DMSM1 = #{record.dmsm1,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.dmsm2 != null">
+        DMSM2 = #{record.dmsm2,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.dmsm3 != null">
+        DMSM3 = #{record.dmsm3,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.dmsm4 != null">
+        DMSM4 = #{record.dmsm4,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update code
+    set XTLB = #{record.xtlb,jdbcType=CHAR},
+    DMLB = #{record.dmlb,jdbcType=VARCHAR},
+    DMZ = #{record.dmz,jdbcType=VARCHAR},
+    DMSX = #{record.dmsx,jdbcType=CHAR},
+    SXH = #{record.sxh,jdbcType=DECIMAL},
+    YWDX = #{record.ywdx,jdbcType=VARCHAR},
+    ZT = #{record.zt,jdbcType=CHAR},
+    CSBJ = #{record.csbj,jdbcType=CHAR},
+    GXSJ = #{record.gxsj,jdbcType=TIMESTAMP},
+    DMSM1 = #{record.dmsm1,jdbcType=LONGVARCHAR},
+    DMSM2 = #{record.dmsm2,jdbcType=LONGVARCHAR},
+    DMSM3 = #{record.dmsm3,jdbcType=LONGVARCHAR},
+    DMSM4 = #{record.dmsm4,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update code
+    set XTLB = #{record.xtlb,jdbcType=CHAR},
+    DMLB = #{record.dmlb,jdbcType=VARCHAR},
+    DMZ = #{record.dmz,jdbcType=VARCHAR},
+    DMSX = #{record.dmsx,jdbcType=CHAR},
+    SXH = #{record.sxh,jdbcType=DECIMAL},
+    YWDX = #{record.ywdx,jdbcType=VARCHAR},
+    ZT = #{record.zt,jdbcType=CHAR},
+    CSBJ = #{record.csbj,jdbcType=CHAR},
+    GXSJ = #{record.gxsj,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hqh.android.entity.CodeWithBLOBs">
+    update code
+    <set>
+      <if test="dmsx != null">
+        DMSX = #{dmsx,jdbcType=CHAR},
+      </if>
+      <if test="sxh != null">
+        SXH = #{sxh,jdbcType=DECIMAL},
+      </if>
+      <if test="ywdx != null">
+        YWDX = #{ywdx,jdbcType=VARCHAR},
+      </if>
+      <if test="zt != null">
+        ZT = #{zt,jdbcType=CHAR},
+      </if>
+      <if test="csbj != null">
+        CSBJ = #{csbj,jdbcType=CHAR},
+      </if>
+      <if test="gxsj != null">
+        GXSJ = #{gxsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dmsm1 != null">
+        DMSM1 = #{dmsm1,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="dmsm2 != null">
+        DMSM2 = #{dmsm2,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="dmsm3 != null">
+        DMSM3 = #{dmsm3,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="dmsm4 != null">
+        DMSM4 = #{dmsm4,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where XTLB = #{xtlb,jdbcType=CHAR}
+    and DMLB = #{dmlb,jdbcType=VARCHAR}
+    and DMZ = #{dmz,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hqh.android.entity.CodeWithBLOBs">
+    update code
+    set DMSX = #{dmsx,jdbcType=CHAR},
+    SXH = #{sxh,jdbcType=DECIMAL},
+    YWDX = #{ywdx,jdbcType=VARCHAR},
+    ZT = #{zt,jdbcType=CHAR},
+    CSBJ = #{csbj,jdbcType=CHAR},
+    GXSJ = #{gxsj,jdbcType=TIMESTAMP},
+    DMSM1 = #{dmsm1,jdbcType=LONGVARCHAR},
+    DMSM2 = #{dmsm2,jdbcType=LONGVARCHAR},
+    DMSM3 = #{dmsm3,jdbcType=LONGVARCHAR},
+    DMSM4 = #{dmsm4,jdbcType=LONGVARCHAR}
+    where XTLB = #{xtlb,jdbcType=CHAR}
+    and DMLB = #{dmlb,jdbcType=VARCHAR}
+    and DMZ = #{dmz,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hqh.android.entity.Code">
+    update code
+    set DMSX = #{dmsx,jdbcType=CHAR},
+    SXH = #{sxh,jdbcType=DECIMAL},
+    YWDX = #{ywdx,jdbcType=VARCHAR},
+    ZT = #{zt,jdbcType=CHAR},
+    CSBJ = #{csbj,jdbcType=CHAR},
+    GXSJ = #{gxsj,jdbcType=TIMESTAMP}
+    where XTLB = #{xtlb,jdbcType=CHAR}
+    and DMLB = #{dmlb,jdbcType=VARCHAR}
+    and DMZ = #{dmz,jdbcType=VARCHAR}
+  </update>
+  <select id="loadCodeMap" parameterType="com.hqh.android.entity.CodeExample" resultType="java.util.Map">
+    select XTLB,DMLB,DMZ,DMSM1 from code order by DMLB,DMZ
+  </select>
+
+
+
+</mapper>

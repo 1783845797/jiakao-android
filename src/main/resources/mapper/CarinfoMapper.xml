@@ -1,0 +1,818 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hqh.android.dao.CarinfoMapper">
+  <resultMap id="BaseResultMap" type="com.hqh.android.entity.Carinfo">
+    <id column="jlcxh" jdbcType="VARCHAR" property="jlcxh" />
+    <id column="kcdddh" jdbcType="VARCHAR" property="kcdddh" />
+    <result column="hpzl" jdbcType="VARCHAR" property="hpzl" />
+    <result column="hphm" jdbcType="VARCHAR" property="hphm" />
+    <result column="jklx" jdbcType="VARCHAR" property="jklx" />
+    <result column="clppxh" jdbcType="VARCHAR" property="clppxh" />
+    <result column="fzjg" jdbcType="VARCHAR" property="fzjg" />
+    <result column="jlczt" jdbcType="VARCHAR" property="jlczt" />
+    <result column="bj" jdbcType="VARCHAR" property="bj" />
+    <result column="jbr" jdbcType="VARCHAR" property="jbr" />
+    <result column="clzl" jdbcType="VARCHAR" property="clzl" />
+    <result column="kskm" jdbcType="VARCHAR" property="kskm" />
+    <result column="ksld" jdbcType="VARCHAR" property="ksld" />
+    <result column="f1" jdbcType="VARCHAR" property="f1" />
+    <result column="f2" jdbcType="VARCHAR" property="f2" />
+    <result column="f3" jdbcType="VARCHAR" property="f3" />
+    <result column="f4" jdbcType="VARCHAR" property="f4" />
+    <result column="f5" jdbcType="VARCHAR" property="f5" />
+    <result column="pky" jdbcType="VARCHAR" property="pky" />
+    <result column="cam1_nvr" jdbcType="VARCHAR" property="cam1Nvr" />
+    <result column="cam1_nvr_channel" jdbcType="VARCHAR" property="cam1NvrChannel" />
+    <result column="cam2_nvr" jdbcType="VARCHAR" property="cam2Nvr" />
+    <result column="cam2_nvr_channel" jdbcType="VARCHAR" property="cam2NvrChannel" />
+    <result column="cam3_nvr" jdbcType="VARCHAR" property="cam3Nvr" />
+    <result column="cam3_nvr_channel" jdbcType="VARCHAR" property="cam3NvrChannel" />
+    <result column="serial_port1" jdbcType="VARCHAR" property="serialPort1" />
+    <result column="baud_rate1" jdbcType="VARCHAR" property="baudRate1" />
+    <result column="serial_port2" jdbcType="VARCHAR" property="serialPort2" />
+    <result column="baud_rate2" jdbcType="VARCHAR" property="baudRate2" />
+    <result column="serial_port1_linux" jdbcType="VARCHAR" property="serialPort1Linux" />
+    <result column="serial_port2_linux" jdbcType="VARCHAR" property="serialPort2Linux" />
+    <result column="ccdjrq" jdbcType="TIMESTAMP" property="ccdjrq" />
+    <result column="qzbfqz" jdbcType="TIMESTAMP" property="qzbfqz" />
+    <result column="cjsj" jdbcType="TIMESTAMP" property="cjsj" />
+    <result column="gxsj" jdbcType="TIMESTAMP" property="gxsj" />
+    <result column="assign_time" jdbcType="TIMESTAMP" property="assignTime" />
+    <result column="type" jdbcType="DECIMAL" property="type" />
+    <result column="audio_nvr_IP" jdbcType="VARCHAR" property="audioNvrIp" />
+    <result column="audio_nvr_port" jdbcType="VARCHAR" property="audioNvrPort" />
+    <result column="audio_nvr_account" jdbcType="VARCHAR" property="audioNvrAccount" />
+    <result column="audio_nvr_password" jdbcType="VARCHAR" property="audioNvrPassword" />
+    <result column="audio_nvr_channel" jdbcType="VARCHAR" property="audioNvrChannel" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    jlcxh, kcdddh, hpzl, hphm, jklx, clppxh, fzjg, jlczt, bj, jbr, clzl, kskm, ksld,
+    f1, f2, f3, f4, f5, pky, cam1_nvr, cam1_nvr_channel, cam2_nvr, cam2_nvr_channel,
+    cam3_nvr, cam3_nvr_channel, serial_port1, baud_rate1, serial_port2, baud_rate2, serial_port1_linux,
+    serial_port2_linux, ccdjrq, qzbfqz, cjsj, gxsj, assign_time, type, audio_nvr_IP,
+    audio_nvr_port, audio_nvr_account, audio_nvr_password, audio_nvr_channel
+  </sql>
+  <select id="selectByExample" parameterType="com.hqh.android.entity.CarinfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from carinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="com.hqh.android.entity.CarinfoKey" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from carinfo
+    where jlcxh = #{jlcxh,jdbcType=VARCHAR}
+    and kcdddh = #{kcdddh,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.hqh.android.entity.CarinfoKey">
+    delete from carinfo
+    where jlcxh = #{jlcxh,jdbcType=VARCHAR}
+    and kcdddh = #{kcdddh,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hqh.android.entity.CarinfoExample">
+    delete from carinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hqh.android.entity.Carinfo">
+    insert into carinfo (jlcxh, kcdddh, hpzl,
+    hphm, jklx, clppxh,
+    fzjg, jlczt, bj, jbr,
+    clzl, kskm, ksld, f1,
+    f2, f3, f4, f5,
+    pky, cam1_nvr, cam1_nvr_channel,
+    cam2_nvr, cam2_nvr_channel, cam3_nvr,
+    cam3_nvr_channel, serial_port1, baud_rate1,
+    serial_port2, baud_rate2, serial_port1_linux,
+    serial_port2_linux, ccdjrq, qzbfqz,
+    cjsj, gxsj, assign_time,
+    type, audio_nvr_IP, audio_nvr_port,
+    audio_nvr_account, audio_nvr_password, audio_nvr_channel
+    )
+    values (#{jlcxh,jdbcType=VARCHAR}, #{kcdddh,jdbcType=VARCHAR}, #{hpzl,jdbcType=VARCHAR},
+    #{hphm,jdbcType=VARCHAR}, #{jklx,jdbcType=VARCHAR}, #{clppxh,jdbcType=VARCHAR},
+    #{fzjg,jdbcType=VARCHAR}, #{jlczt,jdbcType=VARCHAR}, #{bj,jdbcType=VARCHAR}, #{jbr,jdbcType=VARCHAR},
+    #{clzl,jdbcType=VARCHAR}, #{kskm,jdbcType=VARCHAR}, #{ksld,jdbcType=VARCHAR}, #{f1,jdbcType=VARCHAR},
+    #{f2,jdbcType=VARCHAR}, #{f3,jdbcType=VARCHAR}, #{f4,jdbcType=VARCHAR}, #{f5,jdbcType=VARCHAR},
+    #{pky,jdbcType=VARCHAR}, #{cam1Nvr,jdbcType=VARCHAR}, #{cam1NvrChannel,jdbcType=VARCHAR},
+    #{cam2Nvr,jdbcType=VARCHAR}, #{cam2NvrChannel,jdbcType=VARCHAR}, #{cam3Nvr,jdbcType=VARCHAR},
+    #{cam3NvrChannel,jdbcType=VARCHAR}, #{serialPort1,jdbcType=VARCHAR}, #{baudRate1,jdbcType=VARCHAR},
+    #{serialPort2,jdbcType=VARCHAR}, #{baudRate2,jdbcType=VARCHAR}, #{serialPort1Linux,jdbcType=VARCHAR},
+    #{serialPort2Linux,jdbcType=VARCHAR}, #{ccdjrq,jdbcType=TIMESTAMP}, #{qzbfqz,jdbcType=TIMESTAMP},
+    #{cjsj,jdbcType=TIMESTAMP}, #{gxsj,jdbcType=TIMESTAMP}, #{assignTime,jdbcType=TIMESTAMP},
+    #{type,jdbcType=DECIMAL}, #{audioNvrIp,jdbcType=VARCHAR}, #{audioNvrPort,jdbcType=VARCHAR},
+    #{audioNvrAccount,jdbcType=VARCHAR}, #{audioNvrPassword,jdbcType=VARCHAR}, #{audioNvrChannel,jdbcType=VARCHAR}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hqh.android.entity.Carinfo">
+    insert into carinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="jlcxh != null">
+        jlcxh,
+      </if>
+      <if test="kcdddh != null">
+        kcdddh,
+      </if>
+      <if test="hpzl != null">
+        hpzl,
+      </if>
+      <if test="hphm != null">
+        hphm,
+      </if>
+      <if test="jklx != null">
+        jklx,
+      </if>
+      <if test="clppxh != null">
+        clppxh,
+      </if>
+      <if test="fzjg != null">
+        fzjg,
+      </if>
+      <if test="jlczt != null">
+        jlczt,
+      </if>
+      <if test="bj != null">
+        bj,
+      </if>
+      <if test="jbr != null">
+        jbr,
+      </if>
+      <if test="clzl != null">
+        clzl,
+      </if>
+      <if test="kskm != null">
+        kskm,
+      </if>
+      <if test="ksld != null">
+        ksld,
+      </if>
+      <if test="f1 != null">
+        f1,
+      </if>
+      <if test="f2 != null">
+        f2,
+      </if>
+      <if test="f3 != null">
+        f3,
+      </if>
+      <if test="f4 != null">
+        f4,
+      </if>
+      <if test="f5 != null">
+        f5,
+      </if>
+      <if test="pky != null">
+        pky,
+      </if>
+      <if test="cam1Nvr != null">
+        cam1_nvr,
+      </if>
+      <if test="cam1NvrChannel != null">
+        cam1_nvr_channel,
+      </if>
+      <if test="cam2Nvr != null">
+        cam2_nvr,
+      </if>
+      <if test="cam2NvrChannel != null">
+        cam2_nvr_channel,
+      </if>
+      <if test="cam3Nvr != null">
+        cam3_nvr,
+      </if>
+      <if test="cam3NvrChannel != null">
+        cam3_nvr_channel,
+      </if>
+      <if test="serialPort1 != null">
+        serial_port1,
+      </if>
+      <if test="baudRate1 != null">
+        baud_rate1,
+      </if>
+      <if test="serialPort2 != null">
+        serial_port2,
+      </if>
+      <if test="baudRate2 != null">
+        baud_rate2,
+      </if>
+      <if test="serialPort1Linux != null">
+        serial_port1_linux,
+      </if>
+      <if test="serialPort2Linux != null">
+        serial_port2_linux,
+      </if>
+      <if test="ccdjrq != null">
+        ccdjrq,
+      </if>
+      <if test="qzbfqz != null">
+        qzbfqz,
+      </if>
+      <if test="cjsj != null">
+        cjsj,
+      </if>
+      <if test="gxsj != null">
+        gxsj,
+      </if>
+      <if test="assignTime != null">
+        assign_time,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="audioNvrIp != null">
+        audio_nvr_IP,
+      </if>
+      <if test="audioNvrPort != null">
+        audio_nvr_port,
+      </if>
+      <if test="audioNvrAccount != null">
+        audio_nvr_account,
+      </if>
+      <if test="audioNvrPassword != null">
+        audio_nvr_password,
+      </if>
+      <if test="audioNvrChannel != null">
+        audio_nvr_channel,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="jlcxh != null">
+        #{jlcxh,jdbcType=VARCHAR},
+      </if>
+      <if test="kcdddh != null">
+        #{kcdddh,jdbcType=VARCHAR},
+      </if>
+      <if test="hpzl != null">
+        #{hpzl,jdbcType=VARCHAR},
+      </if>
+      <if test="hphm != null">
+        #{hphm,jdbcType=VARCHAR},
+      </if>
+      <if test="jklx != null">
+        #{jklx,jdbcType=VARCHAR},
+      </if>
+      <if test="clppxh != null">
+        #{clppxh,jdbcType=VARCHAR},
+      </if>
+      <if test="fzjg != null">
+        #{fzjg,jdbcType=VARCHAR},
+      </if>
+      <if test="jlczt != null">
+        #{jlczt,jdbcType=VARCHAR},
+      </if>
+      <if test="bj != null">
+        #{bj,jdbcType=VARCHAR},
+      </if>
+      <if test="jbr != null">
+        #{jbr,jdbcType=VARCHAR},
+      </if>
+      <if test="clzl != null">
+        #{clzl,jdbcType=VARCHAR},
+      </if>
+      <if test="kskm != null">
+        #{kskm,jdbcType=VARCHAR},
+      </if>
+      <if test="ksld != null">
+        #{ksld,jdbcType=VARCHAR},
+      </if>
+      <if test="f1 != null">
+        #{f1,jdbcType=VARCHAR},
+      </if>
+      <if test="f2 != null">
+        #{f2,jdbcType=VARCHAR},
+      </if>
+      <if test="f3 != null">
+        #{f3,jdbcType=VARCHAR},
+      </if>
+      <if test="f4 != null">
+        #{f4,jdbcType=VARCHAR},
+      </if>
+      <if test="f5 != null">
+        #{f5,jdbcType=VARCHAR},
+      </if>
+      <if test="pky != null">
+        #{pky,jdbcType=VARCHAR},
+      </if>
+      <if test="cam1Nvr != null">
+        #{cam1Nvr,jdbcType=VARCHAR},
+      </if>
+      <if test="cam1NvrChannel != null">
+        #{cam1NvrChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="cam2Nvr != null">
+        #{cam2Nvr,jdbcType=VARCHAR},
+      </if>
+      <if test="cam2NvrChannel != null">
+        #{cam2NvrChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="cam3Nvr != null">
+        #{cam3Nvr,jdbcType=VARCHAR},
+      </if>
+      <if test="cam3NvrChannel != null">
+        #{cam3NvrChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="serialPort1 != null">
+        #{serialPort1,jdbcType=VARCHAR},
+      </if>
+      <if test="baudRate1 != null">
+        #{baudRate1,jdbcType=VARCHAR},
+      </if>
+      <if test="serialPort2 != null">
+        #{serialPort2,jdbcType=VARCHAR},
+      </if>
+      <if test="baudRate2 != null">
+        #{baudRate2,jdbcType=VARCHAR},
+      </if>
+      <if test="serialPort1Linux != null">
+        #{serialPort1Linux,jdbcType=VARCHAR},
+      </if>
+      <if test="serialPort2Linux != null">
+        #{serialPort2Linux,jdbcType=VARCHAR},
+      </if>
+      <if test="ccdjrq != null">
+        #{ccdjrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="qzbfqz != null">
+        #{qzbfqz,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cjsj != null">
+        #{cjsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gxsj != null">
+        #{gxsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="assignTime != null">
+        #{assignTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=DECIMAL},
+      </if>
+      <if test="audioNvrIp != null">
+        #{audioNvrIp,jdbcType=VARCHAR},
+      </if>
+      <if test="audioNvrPort != null">
+        #{audioNvrPort,jdbcType=VARCHAR},
+      </if>
+      <if test="audioNvrAccount != null">
+        #{audioNvrAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="audioNvrPassword != null">
+        #{audioNvrPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="audioNvrChannel != null">
+        #{audioNvrChannel,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hqh.android.entity.CarinfoExample" resultType="java.lang.Long">
+    select count(*) from carinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update carinfo
+    <set>
+      <if test="record.jlcxh != null">
+        jlcxh = #{record.jlcxh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kcdddh != null">
+        kcdddh = #{record.kcdddh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hpzl != null">
+        hpzl = #{record.hpzl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hphm != null">
+        hphm = #{record.hphm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jklx != null">
+        jklx = #{record.jklx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clppxh != null">
+        clppxh = #{record.clppxh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fzjg != null">
+        fzjg = #{record.fzjg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jlczt != null">
+        jlczt = #{record.jlczt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bj != null">
+        bj = #{record.bj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jbr != null">
+        jbr = #{record.jbr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clzl != null">
+        clzl = #{record.clzl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kskm != null">
+        kskm = #{record.kskm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ksld != null">
+        ksld = #{record.ksld,jdbcType=VARCHAR},
+      </if>
+      <if test="record.f1 != null">
+        f1 = #{record.f1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.f2 != null">
+        f2 = #{record.f2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.f3 != null">
+        f3 = #{record.f3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.f4 != null">
+        f4 = #{record.f4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.f5 != null">
+        f5 = #{record.f5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pky != null">
+        pky = #{record.pky,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cam1Nvr != null">
+        cam1_nvr = #{record.cam1Nvr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cam1NvrChannel != null">
+        cam1_nvr_channel = #{record.cam1NvrChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cam2Nvr != null">
+        cam2_nvr = #{record.cam2Nvr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cam2NvrChannel != null">
+        cam2_nvr_channel = #{record.cam2NvrChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cam3Nvr != null">
+        cam3_nvr = #{record.cam3Nvr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cam3NvrChannel != null">
+        cam3_nvr_channel = #{record.cam3NvrChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serialPort1 != null">
+        serial_port1 = #{record.serialPort1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.baudRate1 != null">
+        baud_rate1 = #{record.baudRate1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serialPort2 != null">
+        serial_port2 = #{record.serialPort2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.baudRate2 != null">
+        baud_rate2 = #{record.baudRate2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serialPort1Linux != null">
+        serial_port1_linux = #{record.serialPort1Linux,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serialPort2Linux != null">
+        serial_port2_linux = #{record.serialPort2Linux,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ccdjrq != null">
+        ccdjrq = #{record.ccdjrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.qzbfqz != null">
+        qzbfqz = #{record.qzbfqz,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.cjsj != null">
+        cjsj = #{record.cjsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.gxsj != null">
+        gxsj = #{record.gxsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.assignTime != null">
+        assign_time = #{record.assignTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=DECIMAL},
+      </if>
+      <if test="record.audioNvrIp != null">
+        audio_nvr_IP = #{record.audioNvrIp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.audioNvrPort != null">
+        audio_nvr_port = #{record.audioNvrPort,jdbcType=VARCHAR},
+      </if>
+      <if test="record.audioNvrAccount != null">
+        audio_nvr_account = #{record.audioNvrAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.audioNvrPassword != null">
+        audio_nvr_password = #{record.audioNvrPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.audioNvrChannel != null">
+        audio_nvr_channel = #{record.audioNvrChannel,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update carinfo
+    set jlcxh = #{record.jlcxh,jdbcType=VARCHAR},
+    kcdddh = #{record.kcdddh,jdbcType=VARCHAR},
+    hpzl = #{record.hpzl,jdbcType=VARCHAR},
+    hphm = #{record.hphm,jdbcType=VARCHAR},
+    jklx = #{record.jklx,jdbcType=VARCHAR},
+    clppxh = #{record.clppxh,jdbcType=VARCHAR},
+    fzjg = #{record.fzjg,jdbcType=VARCHAR},
+    jlczt = #{record.jlczt,jdbcType=VARCHAR},
+    bj = #{record.bj,jdbcType=VARCHAR},
+    jbr = #{record.jbr,jdbcType=VARCHAR},
+    clzl = #{record.clzl,jdbcType=VARCHAR},
+    kskm = #{record.kskm,jdbcType=VARCHAR},
+    ksld = #{record.ksld,jdbcType=VARCHAR},
+    f1 = #{record.f1,jdbcType=VARCHAR},
+    f2 = #{record.f2,jdbcType=VARCHAR},
+    f3 = #{record.f3,jdbcType=VARCHAR},
+    f4 = #{record.f4,jdbcType=VARCHAR},
+    f5 = #{record.f5,jdbcType=VARCHAR},
+    pky = #{record.pky,jdbcType=VARCHAR},
+    cam1_nvr = #{record.cam1Nvr,jdbcType=VARCHAR},
+    cam1_nvr_channel = #{record.cam1NvrChannel,jdbcType=VARCHAR},
+    cam2_nvr = #{record.cam2Nvr,jdbcType=VARCHAR},
+    cam2_nvr_channel = #{record.cam2NvrChannel,jdbcType=VARCHAR},
+    cam3_nvr = #{record.cam3Nvr,jdbcType=VARCHAR},
+    cam3_nvr_channel = #{record.cam3NvrChannel,jdbcType=VARCHAR},
+    serial_port1 = #{record.serialPort1,jdbcType=VARCHAR},
+    baud_rate1 = #{record.baudRate1,jdbcType=VARCHAR},
+    serial_port2 = #{record.serialPort2,jdbcType=VARCHAR},
+    baud_rate2 = #{record.baudRate2,jdbcType=VARCHAR},
+    serial_port1_linux = #{record.serialPort1Linux,jdbcType=VARCHAR},
+    serial_port2_linux = #{record.serialPort2Linux,jdbcType=VARCHAR},
+    ccdjrq = #{record.ccdjrq,jdbcType=TIMESTAMP},
+    qzbfqz = #{record.qzbfqz,jdbcType=TIMESTAMP},
+    cjsj = #{record.cjsj,jdbcType=TIMESTAMP},
+    gxsj = #{record.gxsj,jdbcType=TIMESTAMP},
+    assign_time = #{record.assignTime,jdbcType=TIMESTAMP},
+    type = #{record.type,jdbcType=DECIMAL},
+    audio_nvr_IP = #{record.audioNvrIp,jdbcType=VARCHAR},
+    audio_nvr_port = #{record.audioNvrPort,jdbcType=VARCHAR},
+    audio_nvr_account = #{record.audioNvrAccount,jdbcType=VARCHAR},
+    audio_nvr_password = #{record.audioNvrPassword,jdbcType=VARCHAR},
+    audio_nvr_channel = #{record.audioNvrChannel,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hqh.android.entity.Carinfo">
+    update carinfo
+    <set>
+      <if test="hpzl != null">
+        hpzl = #{hpzl,jdbcType=VARCHAR},
+      </if>
+      <if test="hphm != null">
+        hphm = #{hphm,jdbcType=VARCHAR},
+      </if>
+      <if test="jklx != null">
+        jklx = #{jklx,jdbcType=VARCHAR},
+      </if>
+      <if test="clppxh != null">
+        clppxh = #{clppxh,jdbcType=VARCHAR},
+      </if>
+      <if test="fzjg != null">
+        fzjg = #{fzjg,jdbcType=VARCHAR},
+      </if>
+      <if test="jlczt != null">
+        jlczt = #{jlczt,jdbcType=VARCHAR},
+      </if>
+      <if test="bj != null">
+        bj = #{bj,jdbcType=VARCHAR},
+      </if>
+      <if test="jbr != null">
+        jbr = #{jbr,jdbcType=VARCHAR},
+      </if>
+      <if test="clzl != null">
+        clzl = #{clzl,jdbcType=VARCHAR},
+      </if>
+      <if test="kskm != null">
+        kskm = #{kskm,jdbcType=VARCHAR},
+      </if>
+      <if test="ksld != null">
+        ksld = #{ksld,jdbcType=VARCHAR},
+      </if>
+      <if test="f1 != null">
+        f1 = #{f1,jdbcType=VARCHAR},
+      </if>
+      <if test="f2 != null">
+        f2 = #{f2,jdbcType=VARCHAR},
+      </if>
+      <if test="f3 != null">
+        f3 = #{f3,jdbcType=VARCHAR},
+      </if>
+      <if test="f4 != null">
+        f4 = #{f4,jdbcType=VARCHAR},
+      </if>
+      <if test="f5 != null">
+        f5 = #{f5,jdbcType=VARCHAR},
+      </if>
+      <if test="pky != null">
+        pky = #{pky,jdbcType=VARCHAR},
+      </if>
+      <if test="cam1Nvr != null">
+        cam1_nvr = #{cam1Nvr,jdbcType=VARCHAR},
+      </if>
+      <if test="cam1NvrChannel != null">
+        cam1_nvr_channel = #{cam1NvrChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="cam2Nvr != null">
+        cam2_nvr = #{cam2Nvr,jdbcType=VARCHAR},
+      </if>
+      <if test="cam2NvrChannel != null">
+        cam2_nvr_channel = #{cam2NvrChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="cam3Nvr != null">
+        cam3_nvr = #{cam3Nvr,jdbcType=VARCHAR},
+      </if>
+      <if test="cam3NvrChannel != null">
+        cam3_nvr_channel = #{cam3NvrChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="serialPort1 != null">
+        serial_port1 = #{serialPort1,jdbcType=VARCHAR},
+      </if>
+      <if test="baudRate1 != null">
+        baud_rate1 = #{baudRate1,jdbcType=VARCHAR},
+      </if>
+      <if test="serialPort2 != null">
+        serial_port2 = #{serialPort2,jdbcType=VARCHAR},
+      </if>
+      <if test="baudRate2 != null">
+        baud_rate2 = #{baudRate2,jdbcType=VARCHAR},
+      </if>
+      <if test="serialPort1Linux != null">
+        serial_port1_linux = #{serialPort1Linux,jdbcType=VARCHAR},
+      </if>
+      <if test="serialPort2Linux != null">
+        serial_port2_linux = #{serialPort2Linux,jdbcType=VARCHAR},
+      </if>
+      <if test="ccdjrq != null">
+        ccdjrq = #{ccdjrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="qzbfqz != null">
+        qzbfqz = #{qzbfqz,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cjsj != null">
+        cjsj = #{cjsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gxsj != null">
+        gxsj = #{gxsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="assignTime != null">
+        assign_time = #{assignTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=DECIMAL},
+      </if>
+      <if test="audioNvrIp != null">
+        audio_nvr_IP = #{audioNvrIp,jdbcType=VARCHAR},
+      </if>
+      <if test="audioNvrPort != null">
+        audio_nvr_port = #{audioNvrPort,jdbcType=VARCHAR},
+      </if>
+      <if test="audioNvrAccount != null">
+        audio_nvr_account = #{audioNvrAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="audioNvrPassword != null">
+        audio_nvr_password = #{audioNvrPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="audioNvrChannel != null">
+        audio_nvr_channel = #{audioNvrChannel,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where jlcxh = #{jlcxh,jdbcType=VARCHAR}
+    and kcdddh = #{kcdddh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hqh.android.entity.Carinfo">
+    update carinfo
+    set hpzl = #{hpzl,jdbcType=VARCHAR},
+    hphm = #{hphm,jdbcType=VARCHAR},
+    jklx = #{jklx,jdbcType=VARCHAR},
+    clppxh = #{clppxh,jdbcType=VARCHAR},
+    fzjg = #{fzjg,jdbcType=VARCHAR},
+    jlczt = #{jlczt,jdbcType=VARCHAR},
+    bj = #{bj,jdbcType=VARCHAR},
+    jbr = #{jbr,jdbcType=VARCHAR},
+    clzl = #{clzl,jdbcType=VARCHAR},
+    kskm = #{kskm,jdbcType=VARCHAR},
+    ksld = #{ksld,jdbcType=VARCHAR},
+    f1 = #{f1,jdbcType=VARCHAR},
+    f2 = #{f2,jdbcType=VARCHAR},
+    f3 = #{f3,jdbcType=VARCHAR},
+    f4 = #{f4,jdbcType=VARCHAR},
+    f5 = #{f5,jdbcType=VARCHAR},
+    pky = #{pky,jdbcType=VARCHAR},
+    cam1_nvr = #{cam1Nvr,jdbcType=VARCHAR},
+    cam1_nvr_channel = #{cam1NvrChannel,jdbcType=VARCHAR},
+    cam2_nvr = #{cam2Nvr,jdbcType=VARCHAR},
+    cam2_nvr_channel = #{cam2NvrChannel,jdbcType=VARCHAR},
+    cam3_nvr = #{cam3Nvr,jdbcType=VARCHAR},
+    cam3_nvr_channel = #{cam3NvrChannel,jdbcType=VARCHAR},
+    serial_port1 = #{serialPort1,jdbcType=VARCHAR},
+    baud_rate1 = #{baudRate1,jdbcType=VARCHAR},
+    serial_port2 = #{serialPort2,jdbcType=VARCHAR},
+    baud_rate2 = #{baudRate2,jdbcType=VARCHAR},
+    serial_port1_linux = #{serialPort1Linux,jdbcType=VARCHAR},
+    serial_port2_linux = #{serialPort2Linux,jdbcType=VARCHAR},
+    ccdjrq = #{ccdjrq,jdbcType=TIMESTAMP},
+    qzbfqz = #{qzbfqz,jdbcType=TIMESTAMP},
+    cjsj = #{cjsj,jdbcType=TIMESTAMP},
+    gxsj = #{gxsj,jdbcType=TIMESTAMP},
+    assign_time = #{assignTime,jdbcType=TIMESTAMP},
+    type = #{type,jdbcType=DECIMAL},
+    audio_nvr_IP = #{audioNvrIp,jdbcType=VARCHAR},
+    audio_nvr_port = #{audioNvrPort,jdbcType=VARCHAR},
+    audio_nvr_account = #{audioNvrAccount,jdbcType=VARCHAR},
+    audio_nvr_password = #{audioNvrPassword,jdbcType=VARCHAR},
+    audio_nvr_channel = #{audioNvrChannel,jdbcType=VARCHAR}
+    where jlcxh = #{jlcxh,jdbcType=VARCHAR}
+    and kcdddh = #{kcdddh,jdbcType=VARCHAR}
+  </update>
+
+
+
+  <select id="selectByExampleToPage" parameterType="com.hqh.android.entity.CarinfoExample" resultMap="BaseResultMap">
+    select * from carinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+      <if test="orderByClause != null">
+        order by ${orderByClause}
+      </if>
+    </if>
+    limit #{start,jdbcType=DECIMAL},#{limit,jdbcType=DECIMAL}
+  </select>
+
+  <select id="selectJLCXHByExample" parameterType="com.hqh.android.entity.NvrInfoExample" resultType="java.lang.String">
+    select jlcxh from carinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>

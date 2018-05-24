@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hqh.android.dao.ExamprocMapper">
+  <resultMap id="BaseResultMap" type="com.hqh.android.entity.Examproc">
+    <id column="lsh" jdbcType="VARCHAR" property="lsh"/>
+    <id column="kscs" jdbcType="DECIMAL" property="kscs"/>
+    <id column="ksxm" jdbcType="VARCHAR" property="ksxm"/>
+    <result column="kskm" jdbcType="VARCHAR" property="kskm"/>
+    <result column="kscj" jdbcType="DECIMAL" property="kscj"/>
+    <result column="kszt" jdbcType="DECIMAL" property="kszt"/>
+    <result column="jlcxh" jdbcType="VARCHAR" property="jlcxh"/>
+    <result column="pic1" jdbcType="VARCHAR" property="pic1"/>
+    <result column="pic2" jdbcType="VARCHAR" property="pic2"/>
+    <result column="kssj" jdbcType="TIMESTAMP" property="kssj"/>
+    <result column="jssj" jdbcType="TIMESTAMP" property="jssj"/>
+    <result column="jyw" jdbcType="VARCHAR" property="jyw"/>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    lsh, kscs, ksxm, kskm, kscj, kszt, jlcxh, pic1, pic2, kssj, jssj, jyw
+  </sql>
+  <select id="selectByExample" parameterType="com.hqh.android.entity.ExamprocExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from examproc
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="com.hqh.android.entity.ExamprocKey" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from examproc
+    where lsh = #{lsh,jdbcType=VARCHAR}
+    and kscs = #{kscs,jdbcType=DECIMAL}
+    and ksxm = #{ksxm,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.hqh.android.entity.ExamprocKey">
+    delete from examproc
+    where lsh = #{lsh,jdbcType=VARCHAR}
+    and kscs = #{kscs,jdbcType=DECIMAL}
+    and ksxm = #{ksxm,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hqh.android.entity.ExamprocExample">
+    delete from examproc
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hqh.android.entity.Examproc">
+    insert into examproc (lsh, kscs, ksxm,
+    kskm, kscj, kszt, jlcxh,
+    pic1, pic2, kssj,
+    jssj, jyw)
+    values (#{lsh,jdbcType=VARCHAR}, #{kscs,jdbcType=DECIMAL}, #{ksxm,jdbcType=VARCHAR},
+    #{kskm,jdbcType=VARCHAR}, #{kscj,jdbcType=DECIMAL}, #{kszt,jdbcType=DECIMAL}, #{jlcxh,jdbcType=VARCHAR},
+    #{pic1,jdbcType=VARCHAR}, #{pic2,jdbcType=VARCHAR}, #{kssj,jdbcType=TIMESTAMP},
+    #{jssj,jdbcType=TIMESTAMP}, #{jyw,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hqh.android.entity.Examproc">
+    insert into examproc
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="lsh != null">
+        lsh,
+      </if>
+      <if test="kscs != null">
+        kscs,
+      </if>
+      <if test="ksxm != null">
+        ksxm,
+      </if>
+      <if test="kskm != null">
+        kskm,
+      </if>
+      <if test="kscj != null">
+        kscj,
+      </if>
+      <if test="kszt != null">
+        kszt,
+      </if>
+      <if test="jlcxh != null">
+        jlcxh,
+      </if>
+      <if test="pic1 != null">
+        pic1,
+      </if>
+      <if test="pic2 != null">
+        pic2,
+      </if>
+      <if test="kssj != null">
+        kssj,
+      </if>
+      <if test="jssj != null">
+        jssj,
+      </if>
+      <if test="jyw != null">
+        jyw,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="lsh != null">
+        #{lsh,jdbcType=VARCHAR},
+      </if>
+      <if test="kscs != null">
+        #{kscs,jdbcType=DECIMAL},
+      </if>
+      <if test="ksxm != null">
+        #{ksxm,jdbcType=VARCHAR},
+      </if>
+      <if test="kskm != null">
+        #{kskm,jdbcType=VARCHAR},
+      </if>
+      <if test="kscj != null">
+        #{kscj,jdbcType=DECIMAL},
+      </if>
+      <if test="kszt != null">
+        #{kszt,jdbcType=DECIMAL},
+      </if>
+      <if test="jlcxh != null">
+        #{jlcxh,jdbcType=VARCHAR},
+      </if>
+      <if test="pic1 != null">
+        #{pic1,jdbcType=VARCHAR},
+      </if>
+      <if test="pic2 != null">
+        #{pic2,jdbcType=VARCHAR},
+      </if>
+      <if test="kssj != null">
+        #{kssj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jssj != null">
+        #{jssj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jyw != null">
+        #{jyw,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hqh.android.entity.ExamprocExample" resultType="java.lang.Long">
+    select count(*) from examproc
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update examproc
+    <set>
+      <if test="record.lsh != null">
+        lsh = #{record.lsh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kscs != null">
+        kscs = #{record.kscs,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ksxm != null">
+        ksxm = #{record.ksxm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kskm != null">
+        kskm = #{record.kskm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kscj != null">
+        kscj = #{record.kscj,jdbcType=DECIMAL},
+      </if>
+      <if test="record.kszt != null">
+        kszt = #{record.kszt,jdbcType=DECIMAL},
+      </if>
+      <if test="record.jlcxh != null">
+        jlcxh = #{record.jlcxh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pic1 != null">
+        pic1 = #{record.pic1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pic2 != null">
+        pic2 = #{record.pic2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kssj != null">
+        kssj = #{record.kssj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.jssj != null">
+        jssj = #{record.jssj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.jyw != null">
+        jyw = #{record.jyw,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update examproc
+    set lsh = #{record.lsh,jdbcType=VARCHAR},
+    kscs = #{record.kscs,jdbcType=DECIMAL},
+    ksxm = #{record.ksxm,jdbcType=VARCHAR},
+    kskm = #{record.kskm,jdbcType=VARCHAR},
+    kscj = #{record.kscj,jdbcType=DECIMAL},
+    kszt = #{record.kszt,jdbcType=DECIMAL},
+    jlcxh = #{record.jlcxh,jdbcType=VARCHAR},
+    pic1 = #{record.pic1,jdbcType=VARCHAR},
+    pic2 = #{record.pic2,jdbcType=VARCHAR},
+    kssj = #{record.kssj,jdbcType=TIMESTAMP},
+    jssj = #{record.jssj,jdbcType=TIMESTAMP},
+    jyw = #{record.jyw,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hqh.android.entity.Examproc">
+    update examproc
+    <set>
+      <if test="kskm != null">
+        kskm = #{kskm,jdbcType=VARCHAR},
+      </if>
+      <if test="kscj != null">
+        kscj = #{kscj,jdbcType=DECIMAL},
+      </if>
+      <if test="kszt != null">
+        kszt = #{kszt,jdbcType=DECIMAL},
+      </if>
+      <if test="jlcxh != null">
+        jlcxh = #{jlcxh,jdbcType=VARCHAR},
+      </if>
+      <if test="pic1 != null">
+        pic1 = #{pic1,jdbcType=VARCHAR},
+      </if>
+      <if test="pic2 != null">
+        pic2 = #{pic2,jdbcType=VARCHAR},
+      </if>
+      <if test="kssj != null">
+        kssj = #{kssj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jssj != null">
+        jssj = #{jssj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jyw != null">
+        jyw = #{jyw,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where lsh = #{lsh,jdbcType=VARCHAR}
+    and kscs = #{kscs,jdbcType=DECIMAL}
+    and ksxm = #{ksxm,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hqh.android.entity.Examproc">
+    update examproc
+    set kskm = #{kskm,jdbcType=VARCHAR},
+    kscj = #{kscj,jdbcType=DECIMAL},
+    kszt = #{kszt,jdbcType=DECIMAL},
+    jlcxh = #{jlcxh,jdbcType=VARCHAR},
+    pic1 = #{pic1,jdbcType=VARCHAR},
+    pic2 = #{pic2,jdbcType=VARCHAR},
+    kssj = #{kssj,jdbcType=TIMESTAMP},
+    jssj = #{jssj,jdbcType=TIMESTAMP},
+    jyw = #{jyw,jdbcType=VARCHAR}
+    where lsh = #{lsh,jdbcType=VARCHAR}
+    and kscs = #{kscs,jdbcType=DECIMAL}
+    and ksxm = #{ksxm,jdbcType=VARCHAR}
+  </update>
+</mapper>

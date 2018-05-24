@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hqh.android.dao.KsxmMapper">
+  <resultMap id="BaseResultMap" type="com.hqh.android.entity.Ksxm">
+    <id column="code" jdbcType="VARCHAR" property="code" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="up_code" jdbcType="VARCHAR" property="upCode" />
+    <result column="kfz" jdbcType="VARCHAR" property="kfz" />
+    <result column="kskm" jdbcType="VARCHAR" property="kskm" />
+    <result column="zdpdx" jdbcType="DECIMAL" property="zdpdx" />
+    <result column="code61" jdbcType="VARCHAR" property="code61" />
+    <result column="zt" jdbcType="DECIMAL" property="zt" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    code, name, up_code, kfz, kskm, zdpdx, code61, zt
+  </sql>
+  <select id="selectByExample" parameterType="com.hqh.android.entity.KsxmExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from ksxm
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ksxm
+    where code = #{code,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from ksxm
+    where code = #{code,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hqh.android.entity.KsxmExample">
+    delete from ksxm
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hqh.android.entity.Ksxm">
+    insert into ksxm (code, name, up_code,
+    kfz, kskm, zdpdx, code61,
+    zt)
+    values (#{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{upCode,jdbcType=VARCHAR},
+    #{kfz,jdbcType=VARCHAR}, #{kskm,jdbcType=VARCHAR}, #{zdpdx,jdbcType=DECIMAL}, #{code61,jdbcType=VARCHAR},
+    #{zt,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hqh.android.entity.Ksxm">
+    insert into ksxm
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="code != null">
+        code,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="upCode != null">
+        up_code,
+      </if>
+      <if test="kfz != null">
+        kfz,
+      </if>
+      <if test="kskm != null">
+        kskm,
+      </if>
+      <if test="zdpdx != null">
+        zdpdx,
+      </if>
+      <if test="code61 != null">
+        code61,
+      </if>
+      <if test="zt != null">
+        zt,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="upCode != null">
+        #{upCode,jdbcType=VARCHAR},
+      </if>
+      <if test="kfz != null">
+        #{kfz,jdbcType=VARCHAR},
+      </if>
+      <if test="kskm != null">
+        #{kskm,jdbcType=VARCHAR},
+      </if>
+      <if test="zdpdx != null">
+        #{zdpdx,jdbcType=DECIMAL},
+      </if>
+      <if test="code61 != null">
+        #{code61,jdbcType=VARCHAR},
+      </if>
+      <if test="zt != null">
+        #{zt,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hqh.android.entity.KsxmExample" resultType="java.lang.Long">
+    select count(*) from ksxm
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ksxm
+    <set>
+      <if test="record.code != null">
+        code = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.upCode != null">
+        up_code = #{record.upCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kfz != null">
+        kfz = #{record.kfz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kskm != null">
+        kskm = #{record.kskm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zdpdx != null">
+        zdpdx = #{record.zdpdx,jdbcType=DECIMAL},
+      </if>
+      <if test="record.code61 != null">
+        code61 = #{record.code61,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zt != null">
+        zt = #{record.zt,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ksxm
+    set code = #{record.code,jdbcType=VARCHAR},
+    name = #{record.name,jdbcType=VARCHAR},
+    up_code = #{record.upCode,jdbcType=VARCHAR},
+    kfz = #{record.kfz,jdbcType=VARCHAR},
+    kskm = #{record.kskm,jdbcType=VARCHAR},
+    zdpdx = #{record.zdpdx,jdbcType=DECIMAL},
+    code61 = #{record.code61,jdbcType=VARCHAR},
+    zt = #{record.zt,jdbcType=DECIMAL}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hqh.android.entity.Ksxm">
+    update ksxm
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="upCode != null">
+        up_code = #{upCode,jdbcType=VARCHAR},
+      </if>
+      <if test="kfz != null">
+        kfz = #{kfz,jdbcType=VARCHAR},
+      </if>
+      <if test="kskm != null">
+        kskm = #{kskm,jdbcType=VARCHAR},
+      </if>
+      <if test="zdpdx != null">
+        zdpdx = #{zdpdx,jdbcType=DECIMAL},
+      </if>
+      <if test="code61 != null">
+        code61 = #{code61,jdbcType=VARCHAR},
+      </if>
+      <if test="zt != null">
+        zt = #{zt,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where code = #{code,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hqh.android.entity.Ksxm">
+    update ksxm
+    set name = #{name,jdbcType=VARCHAR},
+    up_code = #{upCode,jdbcType=VARCHAR},
+    kfz = #{kfz,jdbcType=VARCHAR},
+    kskm = #{kskm,jdbcType=VARCHAR},
+    zdpdx = #{zdpdx,jdbcType=DECIMAL},
+    code61 = #{code61,jdbcType=VARCHAR},
+    zt = #{zt,jdbcType=DECIMAL}
+    where code = #{code,jdbcType=VARCHAR}
+  </update>
+
+
+  <select id="selectCodeByExample" parameterType="com.hqh.android.entity.KsxmExample" resultType="java.lang.String">
+    select code from ksxm
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+
+  <select id="selectByExampleToPage" parameterType="com.hqh.android.entity.KsxmExample" resultMap="BaseResultMap">
+    select * from  ksxm
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+      <if test="orderByClause != null">
+        order by ${orderByClause}
+      </if>
+    </if>
+    limit #{start,jdbcType=DECIMAL},#{limit,jdbcType=DECIMAL}
+  </select>
+
+  <select id="selectCodeNameByExample" parameterType="com.hqh.android.entity.KsxmExample" resultMap="BaseResultMap">
+    select code,name from ksxm
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+
+</mapper>

@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hqh.android.dao.VehInspRecordMapper">
+  <resultMap id="BaseResultMap" type="com.hqh.android.entity.VehInspRecord">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="jlcxh" jdbcType="VARCHAR" property="jlcxh" />
+    <result column="kcdddh" jdbcType="VARCHAR" property="kcdddh" />
+    <result column="hphm" jdbcType="VARCHAR" property="hphm" />
+    <result column="jlczt" jdbcType="VARCHAR" property="jlczt" />
+    <result column="hpzl" jdbcType="VARCHAR" property="hpzl" />
+    <result column="jklx" jdbcType="VARCHAR" property="jklx" />
+    <result column="kskm" jdbcType="VARCHAR" property="kskm" />
+    <result column="sj" jdbcType="TIMESTAMP" property="sj" />
+    <result column="msg" jdbcType="VARCHAR" property="msg" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, jlcxh, kcdddh, hphm, jlczt, hpzl, jklx, kskm, sj, msg
+  </sql>
+  <select id="selectByExample" parameterType="com.hqh.android.entity.VehInspRecordExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from veh_insp_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from veh_insp_record
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from veh_insp_record
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hqh.android.entity.VehInspRecordExample">
+    delete from veh_insp_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hqh.android.entity.VehInspRecord">
+    insert into veh_insp_record (id, jlcxh, kcdddh,
+    hphm, jlczt, hpzl,
+    jklx, kskm, sj, msg
+    )
+    values (#{id,jdbcType=BIGINT}, #{jlcxh,jdbcType=VARCHAR}, #{kcdddh,jdbcType=VARCHAR},
+    #{hphm,jdbcType=VARCHAR}, #{jlczt,jdbcType=VARCHAR}, #{hpzl,jdbcType=VARCHAR},
+    #{jklx,jdbcType=VARCHAR}, #{kskm,jdbcType=VARCHAR}, #{sj,jdbcType=TIMESTAMP}, #{msg,jdbcType=VARCHAR}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hqh.android.entity.VehInspRecord">
+    insert into veh_insp_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="jlcxh != null">
+        jlcxh,
+      </if>
+      <if test="kcdddh != null">
+        kcdddh,
+      </if>
+      <if test="hphm != null">
+        hphm,
+      </if>
+      <if test="jlczt != null">
+        jlczt,
+      </if>
+      <if test="hpzl != null">
+        hpzl,
+      </if>
+      <if test="jklx != null">
+        jklx,
+      </if>
+      <if test="kskm != null">
+        kskm,
+      </if>
+      <if test="sj != null">
+        sj,
+      </if>
+      <if test="msg != null">
+        msg,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="jlcxh != null">
+        #{jlcxh,jdbcType=VARCHAR},
+      </if>
+      <if test="kcdddh != null">
+        #{kcdddh,jdbcType=VARCHAR},
+      </if>
+      <if test="hphm != null">
+        #{hphm,jdbcType=VARCHAR},
+      </if>
+      <if test="jlczt != null">
+        #{jlczt,jdbcType=VARCHAR},
+      </if>
+      <if test="hpzl != null">
+        #{hpzl,jdbcType=VARCHAR},
+      </if>
+      <if test="jklx != null">
+        #{jklx,jdbcType=VARCHAR},
+      </if>
+      <if test="kskm != null">
+        #{kskm,jdbcType=VARCHAR},
+      </if>
+      <if test="sj != null">
+        #{sj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="msg != null">
+        #{msg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hqh.android.entity.VehInspRecordExample" resultType="java.lang.Long">
+    select count(*) from veh_insp_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update veh_insp_record
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.jlcxh != null">
+        jlcxh = #{record.jlcxh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kcdddh != null">
+        kcdddh = #{record.kcdddh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hphm != null">
+        hphm = #{record.hphm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jlczt != null">
+        jlczt = #{record.jlczt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hpzl != null">
+        hpzl = #{record.hpzl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jklx != null">
+        jklx = #{record.jklx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kskm != null">
+        kskm = #{record.kskm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sj != null">
+        sj = #{record.sj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.msg != null">
+        msg = #{record.msg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update veh_insp_record
+    set id = #{record.id,jdbcType=BIGINT},
+    jlcxh = #{record.jlcxh,jdbcType=VARCHAR},
+    kcdddh = #{record.kcdddh,jdbcType=VARCHAR},
+    hphm = #{record.hphm,jdbcType=VARCHAR},
+    jlczt = #{record.jlczt,jdbcType=VARCHAR},
+    hpzl = #{record.hpzl,jdbcType=VARCHAR},
+    jklx = #{record.jklx,jdbcType=VARCHAR},
+    kskm = #{record.kskm,jdbcType=VARCHAR},
+    sj = #{record.sj,jdbcType=TIMESTAMP},
+    msg = #{record.msg,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hqh.android.entity.VehInspRecord">
+    update veh_insp_record
+    <set>
+      <if test="jlcxh != null">
+        jlcxh = #{jlcxh,jdbcType=VARCHAR},
+      </if>
+      <if test="kcdddh != null">
+        kcdddh = #{kcdddh,jdbcType=VARCHAR},
+      </if>
+      <if test="hphm != null">
+        hphm = #{hphm,jdbcType=VARCHAR},
+      </if>
+      <if test="jlczt != null">
+        jlczt = #{jlczt,jdbcType=VARCHAR},
+      </if>
+      <if test="hpzl != null">
+        hpzl = #{hpzl,jdbcType=VARCHAR},
+      </if>
+      <if test="jklx != null">
+        jklx = #{jklx,jdbcType=VARCHAR},
+      </if>
+      <if test="kskm != null">
+        kskm = #{kskm,jdbcType=VARCHAR},
+      </if>
+      <if test="sj != null">
+        sj = #{sj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="msg != null">
+        msg = #{msg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hqh.android.entity.VehInspRecord">
+    update veh_insp_record
+    set jlcxh = #{jlcxh,jdbcType=VARCHAR},
+    kcdddh = #{kcdddh,jdbcType=VARCHAR},
+    hphm = #{hphm,jdbcType=VARCHAR},
+    jlczt = #{jlczt,jdbcType=VARCHAR},
+    hpzl = #{hpzl,jdbcType=VARCHAR},
+    jklx = #{jklx,jdbcType=VARCHAR},
+    kskm = #{kskm,jdbcType=VARCHAR},
+    sj = #{sj,jdbcType=TIMESTAMP},
+    msg = #{msg,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+  <select id="selectByExampleToPage" parameterType="com.hqh.android.entity.VehInspRecordExample" resultMap="BaseResultMap">
+    select * from veh_insp_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+      <if test="orderByClause != null">
+        order by ${orderByClause}
+      </if>
+    </if>
+    limit #{start,jdbcType=DECIMAL},#{limit,jdbcType=DECIMAL}
+  </select>
+</mapper>

@@ -1,0 +1,803 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hqh.android.dao.ExamsiteMapper">
+  <resultMap id="BaseResultMap" type="com.hqh.android.entity.Examsite">
+    <id column="KCDDDH" jdbcType="VARCHAR" property="kcdddh" />
+    <result column="KCMC" jdbcType="VARCHAR" property="kcmc" />
+    <result column="CKSBS" jdbcType="DECIMAL" property="cksbs" />
+    <result column="CSBJ" jdbcType="VARCHAR" property="csbj" />
+    <result column="KSXM" jdbcType="VARCHAR" property="ksxm" />
+    <result column="YWLX" jdbcType="VARCHAR" property="ywlx" />
+    <result column="XH" jdbcType="VARCHAR" property="xh" />
+    <result column="FZJG" jdbcType="VARCHAR" property="fzjg" />
+    <result column="GLBM" jdbcType="VARCHAR" property="glbm" />
+    <result column="KSKM" jdbcType="VARCHAR" property="kskm" />
+    <result column="KKCX" jdbcType="VARCHAR" property="kkcx" />
+    <result column="YSR" jdbcType="VARCHAR" property="ysr" />
+    <result column="KMEYYMS" jdbcType="VARCHAR" property="kmeyyms" />
+    <result column="SJMS" jdbcType="VARCHAR" property="sjms" />
+    <result column="FZMS" jdbcType="VARCHAR" property="fzms" />
+    <result column="KMEKSRSXZ" jdbcType="DECIMAL" property="kmeksrsxz" />
+    <result column="KMEZKRSXZ" jdbcType="DECIMAL" property="kmezkrsxz" />
+    <result column="KM2CKRSXZ" jdbcType="DECIMAL" property="km2ckrsxz" />
+    <result column="JBR" jdbcType="VARCHAR" property="jbr" />
+    <result column="BJ" jdbcType="VARCHAR" property="bj" />
+    <result column="ZKSFDZ" jdbcType="VARCHAR" property="zksfdz" />
+    <result column="CKSFDZ" jdbcType="VARCHAR" property="cksfdz" />
+    <result column="KCZT" jdbcType="VARCHAR" property="kczt" />
+    <result column="ZKSBS" jdbcType="DECIMAL" property="zksbs" />
+    <result column="F1" jdbcType="VARCHAR" property="f1" />
+    <result column="F2" jdbcType="VARCHAR" property="f2" />
+    <result column="F3" jdbcType="VARCHAR" property="f3" />
+    <result column="F4" jdbcType="VARCHAR" property="f4" />
+    <result column="F5" jdbcType="VARCHAR" property="f5" />
+    <result column="SBZT" jdbcType="VARCHAR" property="sbzt" />
+    <result column="JGR" jdbcType="VARCHAR" property="jgr" />
+    <result column="JGR2" jdbcType="VARCHAR" property="jgr2" />
+    <result column="CKCS" jdbcType="DECIMAL" property="ckcs" />
+    <result column="JKURL" jdbcType="VARCHAR" property="jkurl" />
+    <result column="JKXLH" jdbcType="VARCHAR" property="jkxlh" />
+    <result column="zdysrq" jdbcType="TIMESTAMP" property="zdysrq" />
+    <result column="cjsj" jdbcType="TIMESTAMP" property="cjsj" />
+    <result column="gxrq" jdbcType="TIMESTAMP" property="gxrq" />
+    <result column="zklwrq" jdbcType="TIMESTAMP" property="zklwrq" />
+    <result column="cklwrq" jdbcType="TIMESTAMP" property="cklwrq" />
+    <result column="jgjssj" jdbcType="TIMESTAMP" property="jgjssj" />
+    <result column="jgkssj" jdbcType="TIMESTAMP" property="jgkssj" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    KCDDDH, KCMC, CKSBS, CSBJ, KSXM, YWLX, XH, FZJG, GLBM, KSKM, KKCX, YSR, KMEYYMS,
+    SJMS, FZMS, KMEKSRSXZ, KMEZKRSXZ, KM2CKRSXZ, JBR, BJ, ZKSFDZ, CKSFDZ, KCZT, ZKSBS,
+    F1, F2, F3, F4, F5, SBZT, JGR, JGR2, CKCS, JKURL, JKXLH, zdysrq, cjsj, gxrq, zklwrq,
+    cklwrq, jgjssj, jgkssj
+  </sql>
+  <select id="selectByExample" parameterType="com.hqh.android.entity.ExamsiteExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from examsite
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from examsite
+    where KCDDDH = #{kcdddh,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from examsite
+    where KCDDDH = #{kcdddh,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hqh.android.entity.ExamsiteExample">
+    delete from examsite
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hqh.android.entity.Examsite">
+    insert into examsite (KCDDDH, KCMC, CKSBS,
+    CSBJ, KSXM, YWLX, XH,
+    FZJG, GLBM, KSKM, KKCX,
+    YSR, KMEYYMS, SJMS,
+    FZMS, KMEKSRSXZ, KMEZKRSXZ,
+    KM2CKRSXZ, JBR, BJ,
+    ZKSFDZ, CKSFDZ, KCZT,
+    ZKSBS, F1, F2, F3,
+    F4, F5, SBZT, JGR,
+    JGR2, CKCS, JKURL,
+    JKXLH, zdysrq, cjsj,
+    gxrq, zklwrq, cklwrq,
+    jgjssj, jgkssj)
+    values (#{kcdddh,jdbcType=VARCHAR}, #{kcmc,jdbcType=VARCHAR}, #{cksbs,jdbcType=DECIMAL},
+    #{csbj,jdbcType=VARCHAR}, #{ksxm,jdbcType=VARCHAR}, #{ywlx,jdbcType=VARCHAR}, #{xh,jdbcType=VARCHAR},
+    #{fzjg,jdbcType=VARCHAR}, #{glbm,jdbcType=VARCHAR}, #{kskm,jdbcType=VARCHAR}, #{kkcx,jdbcType=VARCHAR},
+    #{ysr,jdbcType=VARCHAR}, #{kmeyyms,jdbcType=VARCHAR}, #{sjms,jdbcType=VARCHAR},
+    #{fzms,jdbcType=VARCHAR}, #{kmeksrsxz,jdbcType=DECIMAL}, #{kmezkrsxz,jdbcType=DECIMAL},
+    #{km2ckrsxz,jdbcType=DECIMAL}, #{jbr,jdbcType=VARCHAR}, #{bj,jdbcType=VARCHAR},
+    #{zksfdz,jdbcType=VARCHAR}, #{cksfdz,jdbcType=VARCHAR}, #{kczt,jdbcType=VARCHAR},
+    #{zksbs,jdbcType=DECIMAL}, #{f1,jdbcType=VARCHAR}, #{f2,jdbcType=VARCHAR}, #{f3,jdbcType=VARCHAR},
+    #{f4,jdbcType=VARCHAR}, #{f5,jdbcType=VARCHAR}, #{sbzt,jdbcType=VARCHAR}, #{jgr,jdbcType=VARCHAR},
+    #{jgr2,jdbcType=VARCHAR}, #{ckcs,jdbcType=DECIMAL}, #{jkurl,jdbcType=VARCHAR},
+    #{jkxlh,jdbcType=VARCHAR}, #{zdysrq,jdbcType=TIMESTAMP}, #{cjsj,jdbcType=TIMESTAMP},
+    #{gxrq,jdbcType=TIMESTAMP}, #{zklwrq,jdbcType=TIMESTAMP}, #{cklwrq,jdbcType=TIMESTAMP},
+    #{jgjssj,jdbcType=TIMESTAMP}, #{jgkssj,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hqh.android.entity.Examsite">
+    insert into examsite
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="kcdddh != null">
+        KCDDDH,
+      </if>
+      <if test="kcmc != null">
+        KCMC,
+      </if>
+      <if test="cksbs != null">
+        CKSBS,
+      </if>
+      <if test="csbj != null">
+        CSBJ,
+      </if>
+      <if test="ksxm != null">
+        KSXM,
+      </if>
+      <if test="ywlx != null">
+        YWLX,
+      </if>
+      <if test="xh != null">
+        XH,
+      </if>
+      <if test="fzjg != null">
+        FZJG,
+      </if>
+      <if test="glbm != null">
+        GLBM,
+      </if>
+      <if test="kskm != null">
+        KSKM,
+      </if>
+      <if test="kkcx != null">
+        KKCX,
+      </if>
+      <if test="ysr != null">
+        YSR,
+      </if>
+      <if test="kmeyyms != null">
+        KMEYYMS,
+      </if>
+      <if test="sjms != null">
+        SJMS,
+      </if>
+      <if test="fzms != null">
+        FZMS,
+      </if>
+      <if test="kmeksrsxz != null">
+        KMEKSRSXZ,
+      </if>
+      <if test="kmezkrsxz != null">
+        KMEZKRSXZ,
+      </if>
+      <if test="km2ckrsxz != null">
+        KM2CKRSXZ,
+      </if>
+      <if test="jbr != null">
+        JBR,
+      </if>
+      <if test="bj != null">
+        BJ,
+      </if>
+      <if test="zksfdz != null">
+        ZKSFDZ,
+      </if>
+      <if test="cksfdz != null">
+        CKSFDZ,
+      </if>
+      <if test="kczt != null">
+        KCZT,
+      </if>
+      <if test="zksbs != null">
+        ZKSBS,
+      </if>
+      <if test="f1 != null">
+        F1,
+      </if>
+      <if test="f2 != null">
+        F2,
+      </if>
+      <if test="f3 != null">
+        F3,
+      </if>
+      <if test="f4 != null">
+        F4,
+      </if>
+      <if test="f5 != null">
+        F5,
+      </if>
+      <if test="sbzt != null">
+        SBZT,
+      </if>
+      <if test="jgr != null">
+        JGR,
+      </if>
+      <if test="jgr2 != null">
+        JGR2,
+      </if>
+      <if test="ckcs != null">
+        CKCS,
+      </if>
+      <if test="jkurl != null">
+        JKURL,
+      </if>
+      <if test="jkxlh != null">
+        JKXLH,
+      </if>
+      <if test="zdysrq != null">
+        zdysrq,
+      </if>
+      <if test="cjsj != null">
+        cjsj,
+      </if>
+      <if test="gxrq != null">
+        gxrq,
+      </if>
+      <if test="zklwrq != null">
+        zklwrq,
+      </if>
+      <if test="cklwrq != null">
+        cklwrq,
+      </if>
+      <if test="jgjssj != null">
+        jgjssj,
+      </if>
+      <if test="jgkssj != null">
+        jgkssj,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="kcdddh != null">
+        #{kcdddh,jdbcType=VARCHAR},
+      </if>
+      <if test="kcmc != null">
+        #{kcmc,jdbcType=VARCHAR},
+      </if>
+      <if test="cksbs != null">
+        #{cksbs,jdbcType=DECIMAL},
+      </if>
+      <if test="csbj != null">
+        #{csbj,jdbcType=VARCHAR},
+      </if>
+      <if test="ksxm != null">
+        #{ksxm,jdbcType=VARCHAR},
+      </if>
+      <if test="ywlx != null">
+        #{ywlx,jdbcType=VARCHAR},
+      </if>
+      <if test="xh != null">
+        #{xh,jdbcType=VARCHAR},
+      </if>
+      <if test="fzjg != null">
+        #{fzjg,jdbcType=VARCHAR},
+      </if>
+      <if test="glbm != null">
+        #{glbm,jdbcType=VARCHAR},
+      </if>
+      <if test="kskm != null">
+        #{kskm,jdbcType=VARCHAR},
+      </if>
+      <if test="kkcx != null">
+        #{kkcx,jdbcType=VARCHAR},
+      </if>
+      <if test="ysr != null">
+        #{ysr,jdbcType=VARCHAR},
+      </if>
+      <if test="kmeyyms != null">
+        #{kmeyyms,jdbcType=VARCHAR},
+      </if>
+      <if test="sjms != null">
+        #{sjms,jdbcType=VARCHAR},
+      </if>
+      <if test="fzms != null">
+        #{fzms,jdbcType=VARCHAR},
+      </if>
+      <if test="kmeksrsxz != null">
+        #{kmeksrsxz,jdbcType=DECIMAL},
+      </if>
+      <if test="kmezkrsxz != null">
+        #{kmezkrsxz,jdbcType=DECIMAL},
+      </if>
+      <if test="km2ckrsxz != null">
+        #{km2ckrsxz,jdbcType=DECIMAL},
+      </if>
+      <if test="jbr != null">
+        #{jbr,jdbcType=VARCHAR},
+      </if>
+      <if test="bj != null">
+        #{bj,jdbcType=VARCHAR},
+      </if>
+      <if test="zksfdz != null">
+        #{zksfdz,jdbcType=VARCHAR},
+      </if>
+      <if test="cksfdz != null">
+        #{cksfdz,jdbcType=VARCHAR},
+      </if>
+      <if test="kczt != null">
+        #{kczt,jdbcType=VARCHAR},
+      </if>
+      <if test="zksbs != null">
+        #{zksbs,jdbcType=DECIMAL},
+      </if>
+      <if test="f1 != null">
+        #{f1,jdbcType=VARCHAR},
+      </if>
+      <if test="f2 != null">
+        #{f2,jdbcType=VARCHAR},
+      </if>
+      <if test="f3 != null">
+        #{f3,jdbcType=VARCHAR},
+      </if>
+      <if test="f4 != null">
+        #{f4,jdbcType=VARCHAR},
+      </if>
+      <if test="f5 != null">
+        #{f5,jdbcType=VARCHAR},
+      </if>
+      <if test="sbzt != null">
+        #{sbzt,jdbcType=VARCHAR},
+      </if>
+      <if test="jgr != null">
+        #{jgr,jdbcType=VARCHAR},
+      </if>
+      <if test="jgr2 != null">
+        #{jgr2,jdbcType=VARCHAR},
+      </if>
+      <if test="ckcs != null">
+        #{ckcs,jdbcType=DECIMAL},
+      </if>
+      <if test="jkurl != null">
+        #{jkurl,jdbcType=VARCHAR},
+      </if>
+      <if test="jkxlh != null">
+        #{jkxlh,jdbcType=VARCHAR},
+      </if>
+      <if test="zdysrq != null">
+        #{zdysrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cjsj != null">
+        #{cjsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gxrq != null">
+        #{gxrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zklwrq != null">
+        #{zklwrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cklwrq != null">
+        #{cklwrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jgjssj != null">
+        #{jgjssj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jgkssj != null">
+        #{jgkssj,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hqh.android.entity.ExamsiteExample" resultType="java.lang.Long">
+    select count(*) from examsite
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update examsite
+    <set>
+      <if test="record.kcdddh != null">
+        KCDDDH = #{record.kcdddh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kcmc != null">
+        KCMC = #{record.kcmc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cksbs != null">
+        CKSBS = #{record.cksbs,jdbcType=DECIMAL},
+      </if>
+      <if test="record.csbj != null">
+        CSBJ = #{record.csbj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ksxm != null">
+        KSXM = #{record.ksxm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ywlx != null">
+        YWLX = #{record.ywlx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xh != null">
+        XH = #{record.xh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fzjg != null">
+        FZJG = #{record.fzjg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.glbm != null">
+        GLBM = #{record.glbm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kskm != null">
+        KSKM = #{record.kskm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kkcx != null">
+        KKCX = #{record.kkcx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ysr != null">
+        YSR = #{record.ysr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kmeyyms != null">
+        KMEYYMS = #{record.kmeyyms,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sjms != null">
+        SJMS = #{record.sjms,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fzms != null">
+        FZMS = #{record.fzms,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kmeksrsxz != null">
+        KMEKSRSXZ = #{record.kmeksrsxz,jdbcType=DECIMAL},
+      </if>
+      <if test="record.kmezkrsxz != null">
+        KMEZKRSXZ = #{record.kmezkrsxz,jdbcType=DECIMAL},
+      </if>
+      <if test="record.km2ckrsxz != null">
+        KM2CKRSXZ = #{record.km2ckrsxz,jdbcType=DECIMAL},
+      </if>
+      <if test="record.jbr != null">
+        JBR = #{record.jbr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bj != null">
+        BJ = #{record.bj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zksfdz != null">
+        ZKSFDZ = #{record.zksfdz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cksfdz != null">
+        CKSFDZ = #{record.cksfdz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kczt != null">
+        KCZT = #{record.kczt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zksbs != null">
+        ZKSBS = #{record.zksbs,jdbcType=DECIMAL},
+      </if>
+      <if test="record.f1 != null">
+        F1 = #{record.f1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.f2 != null">
+        F2 = #{record.f2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.f3 != null">
+        F3 = #{record.f3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.f4 != null">
+        F4 = #{record.f4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.f5 != null">
+        F5 = #{record.f5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sbzt != null">
+        SBZT = #{record.sbzt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jgr != null">
+        JGR = #{record.jgr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jgr2 != null">
+        JGR2 = #{record.jgr2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ckcs != null">
+        CKCS = #{record.ckcs,jdbcType=DECIMAL},
+      </if>
+      <if test="record.jkurl != null">
+        JKURL = #{record.jkurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jkxlh != null">
+        JKXLH = #{record.jkxlh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zdysrq != null">
+        zdysrq = #{record.zdysrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.cjsj != null">
+        cjsj = #{record.cjsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.gxrq != null">
+        gxrq = #{record.gxrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.zklwrq != null">
+        zklwrq = #{record.zklwrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.cklwrq != null">
+        cklwrq = #{record.cklwrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.jgjssj != null">
+        jgjssj = #{record.jgjssj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.jgkssj != null">
+        jgkssj = #{record.jgkssj,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update examsite
+    set KCDDDH = #{record.kcdddh,jdbcType=VARCHAR},
+    KCMC = #{record.kcmc,jdbcType=VARCHAR},
+    CKSBS = #{record.cksbs,jdbcType=DECIMAL},
+    CSBJ = #{record.csbj,jdbcType=VARCHAR},
+    KSXM = #{record.ksxm,jdbcType=VARCHAR},
+    YWLX = #{record.ywlx,jdbcType=VARCHAR},
+    XH = #{record.xh,jdbcType=VARCHAR},
+    FZJG = #{record.fzjg,jdbcType=VARCHAR},
+    GLBM = #{record.glbm,jdbcType=VARCHAR},
+    KSKM = #{record.kskm,jdbcType=VARCHAR},
+    KKCX = #{record.kkcx,jdbcType=VARCHAR},
+    YSR = #{record.ysr,jdbcType=VARCHAR},
+    KMEYYMS = #{record.kmeyyms,jdbcType=VARCHAR},
+    SJMS = #{record.sjms,jdbcType=VARCHAR},
+    FZMS = #{record.fzms,jdbcType=VARCHAR},
+    KMEKSRSXZ = #{record.kmeksrsxz,jdbcType=DECIMAL},
+    KMEZKRSXZ = #{record.kmezkrsxz,jdbcType=DECIMAL},
+    KM2CKRSXZ = #{record.km2ckrsxz,jdbcType=DECIMAL},
+    JBR = #{record.jbr,jdbcType=VARCHAR},
+    BJ = #{record.bj,jdbcType=VARCHAR},
+    ZKSFDZ = #{record.zksfdz,jdbcType=VARCHAR},
+    CKSFDZ = #{record.cksfdz,jdbcType=VARCHAR},
+    KCZT = #{record.kczt,jdbcType=VARCHAR},
+    ZKSBS = #{record.zksbs,jdbcType=DECIMAL},
+    F1 = #{record.f1,jdbcType=VARCHAR},
+    F2 = #{record.f2,jdbcType=VARCHAR},
+    F3 = #{record.f3,jdbcType=VARCHAR},
+    F4 = #{record.f4,jdbcType=VARCHAR},
+    F5 = #{record.f5,jdbcType=VARCHAR},
+    SBZT = #{record.sbzt,jdbcType=VARCHAR},
+    JGR = #{record.jgr,jdbcType=VARCHAR},
+    JGR2 = #{record.jgr2,jdbcType=VARCHAR},
+    CKCS = #{record.ckcs,jdbcType=DECIMAL},
+    JKURL = #{record.jkurl,jdbcType=VARCHAR},
+    JKXLH = #{record.jkxlh,jdbcType=VARCHAR},
+    zdysrq = #{record.zdysrq,jdbcType=TIMESTAMP},
+    cjsj = #{record.cjsj,jdbcType=TIMESTAMP},
+    gxrq = #{record.gxrq,jdbcType=TIMESTAMP},
+    zklwrq = #{record.zklwrq,jdbcType=TIMESTAMP},
+    cklwrq = #{record.cklwrq,jdbcType=TIMESTAMP},
+    jgjssj = #{record.jgjssj,jdbcType=TIMESTAMP},
+    jgkssj = #{record.jgkssj,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hqh.android.entity.Examsite">
+    update examsite
+    <set>
+      <if test="kcmc != null">
+        KCMC = #{kcmc,jdbcType=VARCHAR},
+      </if>
+      <if test="cksbs != null">
+        CKSBS = #{cksbs,jdbcType=DECIMAL},
+      </if>
+      <if test="csbj != null">
+        CSBJ = #{csbj,jdbcType=VARCHAR},
+      </if>
+      <if test="ksxm != null">
+        KSXM = #{ksxm,jdbcType=VARCHAR},
+      </if>
+      <if test="ywlx != null">
+        YWLX = #{ywlx,jdbcType=VARCHAR},
+      </if>
+      <if test="xh != null">
+        XH = #{xh,jdbcType=VARCHAR},
+      </if>
+      <if test="fzjg != null">
+        FZJG = #{fzjg,jdbcType=VARCHAR},
+      </if>
+      <if test="glbm != null">
+        GLBM = #{glbm,jdbcType=VARCHAR},
+      </if>
+      <if test="kskm != null">
+        KSKM = #{kskm,jdbcType=VARCHAR},
+      </if>
+      <if test="kkcx != null">
+        KKCX = #{kkcx,jdbcType=VARCHAR},
+      </if>
+      <if test="ysr != null">
+        YSR = #{ysr,jdbcType=VARCHAR},
+      </if>
+      <if test="kmeyyms != null">
+        KMEYYMS = #{kmeyyms,jdbcType=VARCHAR},
+      </if>
+      <if test="sjms != null">
+        SJMS = #{sjms,jdbcType=VARCHAR},
+      </if>
+      <if test="fzms != null">
+        FZMS = #{fzms,jdbcType=VARCHAR},
+      </if>
+      <if test="kmeksrsxz != null">
+        KMEKSRSXZ = #{kmeksrsxz,jdbcType=DECIMAL},
+      </if>
+      <if test="kmezkrsxz != null">
+        KMEZKRSXZ = #{kmezkrsxz,jdbcType=DECIMAL},
+      </if>
+      <if test="km2ckrsxz != null">
+        KM2CKRSXZ = #{km2ckrsxz,jdbcType=DECIMAL},
+      </if>
+      <if test="jbr != null">
+        JBR = #{jbr,jdbcType=VARCHAR},
+      </if>
+      <if test="bj != null">
+        BJ = #{bj,jdbcType=VARCHAR},
+      </if>
+      <if test="zksfdz != null">
+        ZKSFDZ = #{zksfdz,jdbcType=VARCHAR},
+      </if>
+      <if test="cksfdz != null">
+        CKSFDZ = #{cksfdz,jdbcType=VARCHAR},
+      </if>
+      <if test="kczt != null">
+        KCZT = #{kczt,jdbcType=VARCHAR},
+      </if>
+      <if test="zksbs != null">
+        ZKSBS = #{zksbs,jdbcType=DECIMAL},
+      </if>
+      <if test="f1 != null">
+        F1 = #{f1,jdbcType=VARCHAR},
+      </if>
+      <if test="f2 != null">
+        F2 = #{f2,jdbcType=VARCHAR},
+      </if>
+      <if test="f3 != null">
+        F3 = #{f3,jdbcType=VARCHAR},
+      </if>
+      <if test="f4 != null">
+        F4 = #{f4,jdbcType=VARCHAR},
+      </if>
+      <if test="f5 != null">
+        F5 = #{f5,jdbcType=VARCHAR},
+      </if>
+      <if test="sbzt != null">
+        SBZT = #{sbzt,jdbcType=VARCHAR},
+      </if>
+      <if test="jgr != null">
+        JGR = #{jgr,jdbcType=VARCHAR},
+      </if>
+      <if test="jgr2 != null">
+        JGR2 = #{jgr2,jdbcType=VARCHAR},
+      </if>
+      <if test="ckcs != null">
+        CKCS = #{ckcs,jdbcType=DECIMAL},
+      </if>
+      <if test="jkurl != null">
+        JKURL = #{jkurl,jdbcType=VARCHAR},
+      </if>
+      <if test="jkxlh != null">
+        JKXLH = #{jkxlh,jdbcType=VARCHAR},
+      </if>
+      <if test="zdysrq != null">
+        zdysrq = #{zdysrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cjsj != null">
+        cjsj = #{cjsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gxrq != null">
+        gxrq = #{gxrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zklwrq != null">
+        zklwrq = #{zklwrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cklwrq != null">
+        cklwrq = #{cklwrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jgjssj != null">
+        jgjssj = #{jgjssj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jgkssj != null">
+        jgkssj = #{jgkssj,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where KCDDDH = #{kcdddh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hqh.android.entity.Examsite">
+    update examsite
+    set KCMC = #{kcmc,jdbcType=VARCHAR},
+    CKSBS = #{cksbs,jdbcType=DECIMAL},
+    CSBJ = #{csbj,jdbcType=VARCHAR},
+    KSXM = #{ksxm,jdbcType=VARCHAR},
+    YWLX = #{ywlx,jdbcType=VARCHAR},
+    XH = #{xh,jdbcType=VARCHAR},
+    FZJG = #{fzjg,jdbcType=VARCHAR},
+    GLBM = #{glbm,jdbcType=VARCHAR},
+    KSKM = #{kskm,jdbcType=VARCHAR},
+    KKCX = #{kkcx,jdbcType=VARCHAR},
+    YSR = #{ysr,jdbcType=VARCHAR},
+    KMEYYMS = #{kmeyyms,jdbcType=VARCHAR},
+    SJMS = #{sjms,jdbcType=VARCHAR},
+    FZMS = #{fzms,jdbcType=VARCHAR},
+    KMEKSRSXZ = #{kmeksrsxz,jdbcType=DECIMAL},
+    KMEZKRSXZ = #{kmezkrsxz,jdbcType=DECIMAL},
+    KM2CKRSXZ = #{km2ckrsxz,jdbcType=DECIMAL},
+    JBR = #{jbr,jdbcType=VARCHAR},
+    BJ = #{bj,jdbcType=VARCHAR},
+    ZKSFDZ = #{zksfdz,jdbcType=VARCHAR},
+    CKSFDZ = #{cksfdz,jdbcType=VARCHAR},
+    KCZT = #{kczt,jdbcType=VARCHAR},
+    ZKSBS = #{zksbs,jdbcType=DECIMAL},
+    F1 = #{f1,jdbcType=VARCHAR},
+    F2 = #{f2,jdbcType=VARCHAR},
+    F3 = #{f3,jdbcType=VARCHAR},
+    F4 = #{f4,jdbcType=VARCHAR},
+    F5 = #{f5,jdbcType=VARCHAR},
+    SBZT = #{sbzt,jdbcType=VARCHAR},
+    JGR = #{jgr,jdbcType=VARCHAR},
+    JGR2 = #{jgr2,jdbcType=VARCHAR},
+    CKCS = #{ckcs,jdbcType=DECIMAL},
+    JKURL = #{jkurl,jdbcType=VARCHAR},
+    JKXLH = #{jkxlh,jdbcType=VARCHAR},
+    zdysrq = #{zdysrq,jdbcType=TIMESTAMP},
+    cjsj = #{cjsj,jdbcType=TIMESTAMP},
+    gxrq = #{gxrq,jdbcType=TIMESTAMP},
+    zklwrq = #{zklwrq,jdbcType=TIMESTAMP},
+    cklwrq = #{cklwrq,jdbcType=TIMESTAMP},
+    jgjssj = #{jgjssj,jdbcType=TIMESTAMP},
+    jgkssj = #{jgkssj,jdbcType=TIMESTAMP}
+    where KCDDDH = #{kcdddh,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectByExampleToPage" parameterType="com.hqh.android.entity.ExamsiteExample" resultMap="BaseResultMap">
+    select * from  examsite
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+      <if test="orderByClause != null">
+        order by ${orderByClause}
+      </if>
+    </if>
+    limit #{start,jdbcType=DECIMAL},#{limit,jdbcType=DECIMAL}
+  </select>
+</mapper>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+    <property name="LOG_FILE" value="C:/jiakao/logs/android"/>
+
+    <appender name="ROLLIN" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder>
+            <!-- 去掉下面这行,不以ANSI模式显示日志 -->
+            <pattern>${FILE_LOG_PATTERN}</pattern>
+            <!--<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger Line:%-3L - %msg%n</pattern>-->
+        </encoder>
+        <file>${LOG_FILE}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+
+            <!-- 归档的日志文件的路径，例如今天是2013-12-21日志，当前写的日志文件路径为file节点指定，可以将此文件与file指定文件路径设置为不同路径，
+            从而将当前日志文件或归档日志文件置不同的目录。而2013-12-21的日志文件在由fileNamePattern指定。%d{yyyy-MM-dd}指定日期格式，%i指定索引 -->
+            <fileNamePattern>${LOG_FILE}.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <!-- 除按日志记录之外，还配置了日志文件不能超过20M，若超过20M，日志文件会以索引0开始，
+                 命名日志文件，例如jiakao.2017-10-21.0.log -->
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>20MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <!-- 追加方式记录日志 -->
+        <append>true</append>
+    </appender>
+
+    <!--&lt;!&ndash;日志异步到数据库 &ndash;&gt;-->
+    <!--<appender name="DB" class="ch.qos.logback.classic.db.DBAppender">-->
+        <!--<connectionSource class="ch.qos.logback.core.db.DataSourceConnectionSource">-->
+            <!--<dataSource class="org.apache.commons.dbcp.BasicDataSource">-->
+                <!--<driverClass>com.mysql.jdbc.Driver</driverClass>-->
+                <!--<url>jdbc:mysql://192.168.10.138:3333/jiakao</url>-->
+                <!--<user>jiakao</user>-->
+                <!--<password>jiakao</password>-->
+                <!--<sqlDialect class="ch.qos.logback.core.db.dialect.MySQLDialect" />-->
+            <!--</dataSource>-->
+        <!--</connectionSource>-->
+    <!--</appender>-->
+
+    <!-- 环境配置 -->
+    <springProfile name="dev">
+        <root level="DEBUG">
+            <!-- 设置最上级的日志级别,下面传递过来的日志级别 高于这个级别会进入这个处理器 -->
+            <!-- 去掉下面这行,不在控制台输出 -->
+            <!--<appender-ref ref="CONSOLE" />-->
+            <appender-ref ref="ROLLIN"/>
+        </root>
+        <!-- 将高于下面配置的日志,传递到最上级的日志处理器(root标签) -->
+        <logger name="org.springframework.web" level="DEBUG"/>
+        <logger name="org.springboot.sample" level="DEBUG"/>
+        <logger name="com.hqh" level="DEBUG"/>
+        <logger name="com.alibaba.druid" level="DEBUG"/>
+    </springProfile>
+    <springProfile name="default">
+        <root level="INFO">
+            <!-- 设置最上级的日志级别,下面传递过来的日志级别 高于这个级别会进入这个处理器 -->
+            <!-- 去掉下面这行,不在控制台输出 -->
+            <!--<appender-ref ref="CONSOLE" />-->
+            <appender-ref ref="ROLLIN"/>
+        </root>
+        <!-- 将高于下面配置的日志,传递到最上级的日志处理器(root标签) -->
+    </springProfile>
+    <!-- 生产环境(微服务). -->
+    <springProfile name="cloud">
+        <root level="ERROR">
+            <appender-ref ref="ROLLIN"/>
+        </root>
+        <logger name="org.springframework.web" level="ERROR"/>
+        <logger name="org.springboot.sample" level="ERROR"/>
+        <logger name="com.hqh" level="ERROR"/>
+        <logger name="com.alibaba.druid" level="ERROR"/>
+    </springProfile>
+
+</configuration>
